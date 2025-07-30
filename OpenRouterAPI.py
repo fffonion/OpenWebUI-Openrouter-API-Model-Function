@@ -441,6 +441,10 @@ class Pipe:
                 yield citation_inserter(buffer, latest_citations)
             yield citation_formatter(latest_citations)
 
+            time.sleep(
+                0.01
+            )  # Delay to avoid overwhelming the client
+
         except requests.exceptions.Timeout:
             yield f"Pipe Error: Request timed out ({timeout}s)"
         except requests.exceptions.HTTPError as e:
